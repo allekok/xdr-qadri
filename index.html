@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html lang="ckb" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      خلەدەرزی
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+      /* Source of "@font-face": vejinbooks.com */
+      @font-face{font-family:'Droid Arabic Naskh';font-style:normal;font-weight:400;src:url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Regular.eot);src:url("//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Regular.eot?#iefix") format('embedded-opentype'),url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Regular.woff2) format('woff2'),url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Regular.woff) format('woff'),url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Regular.ttf) format('truetype')}
+      html, body {
+      height:100%;
+      margin:0;
+      }
+      body {
+      background:url("image/back.jpg");
+      font-family: 'Droid Arabic Naskh', monospace;
+      margin:1em;
+      }
+      header img {
+      border-bottom:12px solid rgb(76,40,0);
+      margin:1em 0 0;
+      display:block;
+      max-width:100%;
+      }
+      header h1 {
+      cursor:pointer;
+      margin-bottom:0;
+      display:inline-block;
+      }
+      header small {
+      display:block;
+      }
+      .loader {
+      animation: l .6s infinite linear;
+      border-top:4px solid rgb(76,40,0);
+      width:4em;
+      height:4em;
+      border-radius:100%;
+      }
+      @keyframes l {
+      0% { transform: rotate(0); }
+      100% {transform: rotate(360deg); }
+      }
+      a {
+      color:rgb(76,40,0);
+      }
+      #main {
+      max-width:600px;
+      margin:1em .5em;
+      }
+      #main a {
+      display:block;
+      text-align:right;
+      font-size:2em;
+      padding:.6em;
+      text-decoration:none;
+      }
+      #main a:hover, #main a:focus {
+      background:rgba(255,255,255,.1);
+      }
+    </style>
+    
+  </head>
+  
+  <body>
+    <center>
+      <header>
+	<img src="image/portraits/1.svg">
+	<h1 onclick="get_list('.','main')">
+	  بەرهەمەکانی خلەدەرزی
+	</h1>
+	<small>
+	  لکێک لە
+	  <a href="http://kheladarzi.ir/">kheladarzi.ir</a>
+	</small>
+      </header>
+      
+      <main id='main'>
+	<div class='loader'>
+	</div>
+	
+      </main>
+
+      <footer>
+	<a href="https://github.com/#">
+	  github
+	</a>
+      </footer>
+    </center>
+    <script>
+      function get_list(path, target_ID) {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("get", `${path}/list.txt?preventCache=${Date.now()}`);
+
+      xmlhttp.onload = function () {
+      if(this.responseText == null) {
+      alert(1);
+      }
+      set_url(path);
+      echo_list(this.responseText, target_ID);
+      }
+      xmlhttp.send();
+      }
+
+      function set_url (path) {
+      window.location = `./index.html#${path}`;
+      }
+
+      function get_path () {
+      var h = window.location.hash.substr(1);
+      if( h === "" ) return ".";
+      return h;
+      }
+
+      function echo_list(list, target_ID) {
+      list = list.split("\n");
+      var html = "";
+      var href = "";
+      var gLQ = "";
+      
+      for(var i in list) {
+      href = get_path() + "/" + list[i];
+      gLQ = href.split("/").length < 4 ? `event.preventDefault();get_list("${href}", "main");` : "";
+      
+      html += `<a href='${href}' onclick='${gLQ}'>&rsaquo; ${list[i]}</a>`;
+      }
+
+      document.getElementById(target_ID).innerHTML = html;
+      }
+
+      window.onload = function() {
+      get_list(get_path(), "main");
+      }
+    </script>
+    
+  </body>
+</html>
