@@ -21,7 +21,6 @@
       margin:1em;
       }
       header img {
-      border-bottom:12px solid rgb(76,40,0);
       margin:1em 0 0;
       display:block;
       max-width:100%;
@@ -30,6 +29,7 @@
       cursor:pointer;
       margin-bottom:0;
       display:inline-block;
+      font-weight:normal;
       }
       header small {
       display:block;
@@ -74,19 +74,17 @@
 	  بەرهەمەکانی خلەدەرزی
 	</h1>
 	<small>
-	  لکێک لە
+	  ئاوێنەی 
 	  <a href="http://kheladarzi.ir/">kheladarzi.ir</a>
 	</small>
       </header>
       
       <main id='main'>
-	<div class='loader'>
-	</div>
 	
       </main>
 
       <footer>
-	<a href="https://github.com/#">
+	<a href="https://github.com/allekok/xile-derzi">
 	  github
 	</a>
       </footer>
@@ -95,11 +93,9 @@
       function get_list(path, target_ID) {
       var xmlhttp = new XMLHttpRequest();
       xmlhttp.open("get", `${path}/list.txt?preventCache=${Date.now()}`);
-
+      document.getElementById(target_ID).innerHTML = "<div class='loader'></div>";
+      
       xmlhttp.onload = function () {
-      if(this.responseText == null) {
-      alert(1);
-      }
       set_url(path);
       echo_list(this.responseText, target_ID);
       }
