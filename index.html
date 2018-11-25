@@ -80,10 +80,10 @@
       <header>
 	<img src="image/portraits/1.svg">
 	<h1 onclick="get_list('.','main')">
-	  بەرهەمەکانی خلەدەرزی
+	  خلەدەرزی
 	</h1>
 	<small>
-	  ئاوێنەی 
+	  ئاوێنەی  
 	  <a href="http://kheladarzi.ir/">kheladarzi.ir</a>
 	</small>
       </header>
@@ -127,7 +127,7 @@
       var html = "";
       var href = "";
       var gLQ = "";
-      
+
       for(var i in list) {
       href = get_path() + "/" + list[i];
       gLQ = href.split("/").length < 4 ? `event.preventDefault();get_list("${href}", "main");` : "";
