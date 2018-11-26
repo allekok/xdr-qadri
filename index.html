@@ -51,6 +51,7 @@
       #main {
       max-width:600px;
       margin:1em .5em;
+      background:rgba(255,255,255,.07);
       }
       #main a {
       display:block;
@@ -113,7 +114,7 @@
       }
 
       function set_url (path) {
-      window.location = `./#${path}`;
+      window.location = `index.html#${path}`;
       }
 
       function get_path () {
@@ -125,9 +126,13 @@
       function echo_list(list, target_ID) {
       list = list.split("\n");
       var html = "";
-      var href = "";
+      var href = get_path();
       var gLQ = "";
-
+      var back = href === "." ? "" : href.split("/").slice(0,href.split("/").length-1).join("/");
+      if(back !== "") {
+      html += `<a style='text-align:left;background:rgba(255,255,255,.15);' href='${back}' onclick='event.preventDefault();get_list("${back}", "main");'>گەڕانەوە &rsaquo;</a>`;
+      }
+		  
       for(var i in list) {
       href = get_path() + "/" + list[i];
       gLQ = href.split("/").length < 4 ? `event.preventDefault();get_list("${href}", "main");` : "";
