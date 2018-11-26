@@ -78,7 +78,7 @@
   <body>
     <center>
       <header>
-	<img src="image/portraits/1.svg">
+	<img src="./image/back.jpg">
 	<h1 onclick="get_list('.','main')">
 	  خلەدەرزی
 	</h1>
@@ -113,7 +113,7 @@
       }
 
       function set_url (path) {
-      window.location = `./index.html#${path}`;
+      window.location = `./#${path}`;
       }
 
       function get_path () {
@@ -139,7 +139,8 @@
       }
 
       window.onload = function() {
-      get_list(get_path(), "main");
+				     get_list(get_path(), "main");
+				     document.querySelector("header img").src="./image/portraits/1.svg";
       }
     </script>
     
