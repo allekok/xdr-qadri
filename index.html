@@ -16,9 +16,11 @@
       height:100%;
       margin:0;
       }
+      body, input {
+      font-family: 'Droid Arabic Naskh', monospace;
+      }
       body {
       background:url("image/back.jpg");
-      font-family: 'Droid Arabic Naskh', monospace;
       margin:1em;
       }
       header img {
@@ -74,6 +76,19 @@
       left: 0;
       z-index:-999;
       }
+      #search input {
+      margin-top:1em;
+      width:100%;
+      display:block;
+      border:0;
+      padding:1em 2em;
+      font-size:1em;
+      box-sizing:border-box;
+      background:rgba(255,255,255,.7);
+      }
+      #search input:focus {
+      background:white;
+      }
     </style>
     
   </head>
@@ -90,6 +105,9 @@
 	  <a href="http://kheladarzi.ir/">kheladarzi.ir</a>
 	</small>
       </header>
+      <section id="search">
+	<input type="text" onkeyup="filter(this.value)" placeholder="گەڕان لەم لاپەڕەدا...">
+      </section>
       
       <main id='main'>
 	
@@ -144,7 +162,126 @@
 
       document.getElementById(target_ID).innerHTML = html;
       }
+	function filter(input) {
+	var filter, ul, li, a, i;
+	filter = san_data(input.toUpperCase(),true);
+	div = document.getElementById("main");
+	a = div.getElementsByTagName("a");
+	for (i = 0; i < a.length; i++) {
+	if (san_data(a[i].innerHTML.toUpperCase(),true).indexOf(filter) > -1) {
+	    a[i].style.display = "";
+	} else {
+	    a[i].style.display = "none";
+	}
+	}
+	}
+function num_convert(inp) {
 
+    var en_num = [/0/g,/1/g,/2/g,/3/g,/4/g,/5/g,/6/g,/7/g,/8/g,/9/g];
+    var ku_num = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+    var ar_num = [/٠/g,/١/g,/٢/g,/٣/g,/٤/g,/٥/g,/٦/g,/٧/g,/٨/g,/٩/g];
+
+    for(var i in en_num) {
+        inp = inp.replace(en_num[i] , ku_num[i]);
+        inp = inp.replace(ar_num[i] , ku_num[i]);
+    }
+
+    return inp;
+}
+function san_data(inp , lastChance=false) {
+    if (inp == "")  return "";
+
+    var extras = [/&laquo;/g,/&raquo;/g,/&rsaquo;/g,/&lsaquo;/g,/&bull;/g,/&nbsp;/g,/\?/g, /!/g, /#/g, /&/g, /\*/g, /\(/g, /\)/g, /-/g, /\+/g, /=/g, /_/g,/\[/g, /\]/g, /{/g, /}/g,/</g,/>/g, /\//g, /\|/, /\'/g, /\"/g, /;/g, /:/g, /,/g, /\./g, /~/g, /`/g,/؟/g, /،/g, /»/g, /«/g, /ـ/g, /›/g, /‹/g, /•/g, /‌/g, /\s+/g, 
+    /؛/g,
+    ];
+    var ar_signs =['ِ', 'ُ', 'ٓ', 'ٰ', 'ْ', 'ٌ', 'ٍ', 'ً', 'ّ', 'َ'];
+
+    var kurdish_letters = [
+    	"ه",
+    	"ه",
+    	"ک",
+    	"ی",
+    	"ه",
+    	"ز",
+    	"س",
+    	"ت",
+    	"ز",
+    	"ر",
+    	"ه",
+    	"خ",
+    	"و",
+    	"و",
+    	"و",
+    	"ی",
+    	"ر",
+    	"ل",
+    	"ز",
+    	"س",
+    	"ه",
+    	"ر",
+    	"م",
+    	"ا",
+    	"ا",
+    	"ل",
+    	"س",
+    	"ی",
+    	"و",
+    	"ئ",
+    	"ی",
+    ];
+
+    var other_letters = [
+    	/ه‌/g,
+    	/ە/g,
+    	/ك/g,
+    	/ي/g,
+    	/ھ/g,
+    	/ض/g,
+    	/ص/g,
+    	/ط/g,
+    	/ظ/g,
+    	/ڕ/g,
+    	/ح/g,
+    	/غ/g,
+    	/وو/g,
+    	/ۆ/g,
+    	/ؤ/g,
+    	/ێ/g,
+    	/ڕ/g,
+    	/ڵ/g,
+    	/ذ/g,
+    	/ث/g,
+    	/ة/g,
+    	/رر/g,
+    	/مم/g,
+    	/أ/g,
+    	/آ/g,
+    	/لل/g,
+    	/سس/g,
+    	/یی/g,
+    	/ڤ/g,
+    	/ع/g,
+    	/ى/g,
+    ];
+
+    for (var i in extras) {
+        inp = inp.replace(extras[i] , "");
+    }
+
+    for (i in ar_signs) {
+        inp = inp.replace(ar_signs[i] , "");
+    }
+
+    for(i in kurdish_letters) {
+        inp = inp.replace(other_letters[i], kurdish_letters[i]);
+    }
+
+    inp = num_convert(inp);
+
+    if(lastChance == true)  inp = inp.replace(/ه/g , "");
+
+    return inp;
+}
       window.onload = function() {
 				     get_list(get_path(), "main");
 				     document.querySelector("header img").src="./image/portraits/1.svg";
