@@ -156,7 +156,7 @@
             document.getElementById(target_ID).innerHTML = "<div class='loader'></div>";
 
             xmlhttp.onload = function() {
-                set_url(path);
+                if(path !== get_path) set_url(path);
                 echo_list(this.responseText, target_ID);
             }
             xmlhttp.send();
@@ -315,7 +315,11 @@
             return inp;
         }
 
-            get_list(get_path(), "main");
+        get_list(get_path(), "main");
+	window.onpopstate = function(e) {
+	get_list(get_path(), "main");
+	}
+
     </script>
 
 </body>
