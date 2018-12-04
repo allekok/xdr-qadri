@@ -194,11 +194,11 @@
 
         function filter(input) {
             var filter, ul, li, a, i;
-            filter = san_data(input.toUpperCase(), true);
+            filter = san_data(input.toUpperCase());
             div = document.getElementById("main");
             a = div.getElementsByTagName("a");
             for (i = 0; i < a.length; i++) {
-                if (san_data(a[i].innerHTML.toUpperCase(), true).indexOf(filter) > -1) {
+                if (san_data(a[i].innerHTML.toUpperCase()).indexOf(filter) > -1) {
                     a[i].style.display = "";
                 } else {
                     a[i].style.display = "none";
