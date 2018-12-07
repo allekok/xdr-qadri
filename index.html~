@@ -191,7 +191,7 @@
             var lnk = "";
             var back = href === "." ? "" : href.split("/").slice(0, href.split("/").length - 1).join("/");
             if (back !== "") {
-                html += `<a style='text-align:left;background:rgba(255,255,255,.15);' href='#${back}' onclick='event.preventDefault();get_list("${back}", "main");'>گەڕانەوە &rsaquo;</a>`;
+                html += `<a style='text-align:left;background:rgba(255,255,255,.15);' href='${back}' onclick='event.preventDefault();get_list("${back}", "main");'>گەڕانەوە &rsaquo;</a>`;
             }
 
             for (var i in list) {
