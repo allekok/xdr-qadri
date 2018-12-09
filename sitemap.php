@@ -1,7 +1,7 @@
 <?php
 
 $GLOBALS["SITEMAP"] = "sitemap.xml";
-$GLOBALS["SITE"] = "https://allekok.github.io/mamle/#";
+$GLOBALS["SITE"] = "https://allekok.github.io/xile-derzi/#";
 $GLOBALS["IGNORE"] = [".", "..", "list.txt", "list.php", "list.php~", "image", "index.html", "index.html~", ".git", "LICENSE", "README.md", "google0a141cc724bea402.html", "sw.js",$GLOBALS["SITEMAP"], "{$GLOBALS["SITEMAP"]}~", "sitemap.php", "sitemap.php~"];
 $GLOBALS["DIRS"] = ".DIRS";
 $GLOBALS["FILES"] = ".FILES";
