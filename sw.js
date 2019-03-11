@@ -1,18 +1,23 @@
+const version = "v3";
 self.addEventListener('install', function(event) {
     event.waitUntil(
-	caches.open('v3').then(function(cache) {
+	caches.open(version).then(function(cache) {
 	    return cache.addAll([
+		'./sw.js',
 		'./index.html',
+		'./site/script.js',
+		'./site/style.css',
 		'./site/image/back.jpg',
 		'./site/image/portraits/1.svg',
 		'./site/image/portraits/1.jpg',
+		'./site/DroidNaskh-Regular.woff2',
 	    ]);
 	})
     );
 });
 
 self.addEventListener('activate', function(event) {
-    var cacheWhitelist = ['v3'];
+    var cacheWhitelist = [version];
 
     event.waitUntil(
 	caches.keys().then(function(keyList) {
