@@ -1,18 +1,18 @@
 self.addEventListener('install', function(event) {
     event.waitUntil(
-	caches.open('v2').then(function(cache) {
+	caches.open('v3').then(function(cache) {
 	    return cache.addAll([
 		'./index.html',
-		'./image/back.jpg',
-		'./image/portraits/1.svg',
-		'./image/portraits/1.jpg',
+		'./site/image/back.jpg',
+		'./site/image/portraits/1.svg',
+		'./site/image/portraits/1.jpg',
 	    ]);
 	})
     );
 });
 
 self.addEventListener('activate', function(event) {
-    var cacheWhitelist = ['v2'];
+    var cacheWhitelist = ['v3'];
 
     event.waitUntil(
 	caches.keys().then(function(keyList) {
@@ -28,12 +28,7 @@ self.addEventListener('activate', function(event) {
 self.addEventListener('fetch', function(event) {
     event.respondWith(
 	caches.match(event.request).then(function(resp) {
-	    return resp || fetch(event.request).then(function(response) {
-		//let responseClone = response.clone();
-		//    caches.open('v1').then(function(cache) {
-		//      cache.put(event.request, responseClone);
-		//    });
-		
+	    return resp || fetch(event.request).then(function(response) {		
 		return response;
 	    });
 	}).catch(function() {
