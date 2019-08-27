@@ -1,16 +1,16 @@
-const version = "v5";
+const version = "v6";
 self.addEventListener('install', function(event) {
     event.waitUntil(
 	caches.open(version).then(function(cache) {
 	    return cache.addAll([
-		'./sw.js',
-		'./index.html',
-		'./site/script.js',
-		'./site/style.css',
-		'./site/image/back.jpg',
-		'./site/image/portraits/1.svg',
-		'./site/image/portraits/1.jpg',
-		'./site/DroidNaskh-Regular.woff2',
+		'/xile-derzi/sw.js',
+		'/xile-derzi/index.html',
+		'/xile-derzi/site/script.js?v1',
+		'/xile-derzi/site/style.css?v1',
+		'/xile-derzi/site/image/back.jpg',
+		'/xile-derzi/site/image/portraits/1.svg',
+		'/xile-derzi/site/image/portraits/1.jpg',
+		'/xile-derzi/site/DroidNaskh-Regular.woff2',
 	    ]);
 	})
     );
@@ -37,7 +37,7 @@ self.addEventListener('fetch', function(event) {
 		return response;
 	    });
 	}).catch(function() {
-	    return caches.match('./index.html');
+	    return caches.match('/xile-derzi/index.html');
 	})
     );
 });
