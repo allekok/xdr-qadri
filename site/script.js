@@ -52,8 +52,8 @@ onclick='event.preventDefault();get_list("${back}", "main");'>گەڕانەوە &
     for (let i in list)
     {
         pathNew = path + "/" + list[i];
-        href = pathNew.split("/").length < 4 ? `#${pathNew}` : `${pathNew}`;
-        onClick = pathNew.split("/").length < 4 ? `event.preventDefault();get_list("${pathNew}", "main");` : "";
+        href = pathNew.split("/").length < navLevel ? `#${pathNew}` : `${pathNew}`;
+        onClick = pathNew.split("/").length < navLevel ? `event.preventDefault();get_list("${pathNew}", "main");` : "";
         html += `<a href='${href}' onclick='${onClick}'>&rsaquo; ${list[i]}</a>`;
     }
     
