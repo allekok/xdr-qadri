@@ -1,0 +1,14 @@
+{
+    "name": "خدر‌قادری",
+    "short_name": "خدر‌قادری",
+    "icons": [
+        {
+            "src": "/xdr-qadri/site/image/portraits/1.png",
+            "sizes": "130x130",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "display": "standalone"
+}
