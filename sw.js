@@ -4,8 +4,8 @@ self.addEventListener('install', function(event) {
 		caches.open(version).then(function(cache) {
 			return cache.addAll([
 				'/xile-derzi/sw.js',
-				'/xile-derzi/site/script.js?v7',
-				'/xile-derzi/site/style.css?v2',
+				'/xile-derzi/site/script.js?v8',
+				'/xile-derzi/site/style.css?v3',
 				'/xile-derzi/site/image/back.jpg',
 				'/xile-derzi/site/image/portraits/1.svg',
 				'/xile-derzi/site/image/portraits/1.jpg',
